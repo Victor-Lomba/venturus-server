@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const axios = require("axios").default;
 const cors = require("cors");
@@ -28,5 +27,5 @@ app.use("*", (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000, () =>
-	console.log("ouvindo a Porta " + (process.env.PORT || 3000))
+	console.log("Listening to port:  " + (process.env.PORT || 3000))
 );
