@@ -1,0 +1,25 @@
+{
+	"name": "venturus-server",
+	"version": "1.0.0",
+	"description": "Server for Handling CORS",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/victot21/venturus-server.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/victot21/venturus-server/issues"
+	},
+	"homepage": "https://github.com/victot21/venturus-server#readme",
+	"dependencies": {
+		"axios": "^0.21.1",
+		"cors": "^2.8.5",
+		"express": "^4.17.1"
+	}
+}
