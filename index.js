@@ -1,29 +1,32 @@
+require("dotenv").config();
 const express = require("express");
 const axios = require("axios").default;
 const cors = require("cors");
 const app = express();
 
-app.use(express.json());
-app.use(cors);
-
-app.use("*", (req, res) => {
-	console.log("funcionou");
-	return res.status(200).send();
-});
+app.use(cors());
 
 app.get("/ping", (req, res) => {
-	return res.status(200).send();
+	console.log("pong");
+	return res.status(200).send({ pong: "pong" });
 });
 
 app.get("/search/:search", async (req, res) => {
 	const search = req.params.search;
-	//const response = await axios.get(
-	//	`https://v2.api-football.com/players/search${search}`
-	//);
-	console.log("https://v2.api-football.com/players/search${search}");
-	return res.status(200).send();
+	if (!search) {
+		return res.status(400).send({ error: "please use a name filter" });
+	}
+	const response = await axios.get(
+		`https://v2.api-football.com/players/search/${search}`,
+		{ headers: { "X-RapidAPI-Key": process.env.Key } }
+	);
+	return res.status(200).send(response.data);
 });
 
-app.listen(process.env.PORT, () =>
-	console.log("ouvindo a Porta " + process.env.PORT)
+app.use("*", (req, res) => {
+	res.status(400).send({ error: "invalid route" });
+});
+
+app.listen(3000, () =>
+	console.log("ouvindo a Porta " + (process.env.PORT || 3000))
 );
