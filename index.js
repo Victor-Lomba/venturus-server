@@ -27,6 +27,6 @@ app.use("*", (req, res) => {
 	res.status(400).send({ error: "invalid route" });
 });
 
-app.listen(3000, () =>
+app.listen(process.env.PORT || 3000, () =>
 	console.log("ouvindo a Porta " + (process.env.PORT || 3000))
 );
